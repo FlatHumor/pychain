@@ -39,7 +39,20 @@ class FileRepository(Repository):
             next_ident = curr_idents[-1] + 1
         next_path = self._build_path(next_ident)
         with open(next_path, 'w') as brickfile:
-            brickfile.write(str(brick))
+            lines = [
+                str(brick.ident),
+                str(brick.head_hash),
+                str(brick.prev_hash),
+                str(brick.nonce),
+                str(brick.bits),
+                str(brick.timestamp),
+                str(brick.transaction.sender),
+                str(brick.transaction.receiver),
+                str(brick.transaction.content),
+                str(brick.transaction.timestamp)
+            ]
+            for line in lines:
+                brickfile.write(line + '\n')
 
     def get_identificators(self):
         idents = []
