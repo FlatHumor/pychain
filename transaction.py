@@ -13,8 +13,18 @@ class Transaction(object):
         return "%s%s%s%s" % (self.sender, self.receiver, self.content, self.timestamp)
 
     def __str__(self):
-        return "{s}\n{r}\n{c}\n{t}".format(
-            s=self.sender, r=self.receiver, c=self.content, t=self.timestamp)
+        return (
+            """
+            SENDER:    {sender}
+            RECEIVER:  {receiver}
+            CONTENT:   {content}
+            TIMESTAMP: {timestamp}
+            """).format(
+            sender=self.sender,
+            receiver=self.receiver,
+            content=self.content,
+            timestamp=self.timestamp
+        )
 
     def __repr__(self):
         return self.__str__()

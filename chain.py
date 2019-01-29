@@ -1,6 +1,7 @@
 import hashlib
 from brick import Brick
-from transaction import Transaction
+from exceptions import HashRecalculatingException
+
 
 class Chain(object):
 
@@ -73,12 +74,11 @@ class Chain(object):
             brick_hash = self.build_hash(brick_guess)
 
             if brick.head_hash != brick_hash:
-                print('VALIDATION FAILED ON HASH RECALCULATION')
-                return False
+                print(brick)
+                raise HashRecalculatingException('VALIDATION FAILED ON HASH RECALCULATION')
 
             if brick.prev_hash != prev_hash:
                 print('VALIDATION FAILED ON LINK CHECKING')
-                print("BRICK # %s" % brick.ident)
                 return False
 
             if not self.check_nonce(brick.head_hash, brick.nonce, brick.bits):

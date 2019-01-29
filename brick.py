@@ -16,14 +16,24 @@ class Brick(object):
         return "%s%s%s" % (self.transaction.get_guess(), self.prev_hash, self.timestamp)
 
     def __str__(self):
-        return "{i}\n{hh}\n{ph}\n{n}\n{b}\n{ts}\n{ta}".format(
-            i=self.ident,
-            hh=self.head_hash,
-            ph=self.prev_hash,
-            n=self.nonce,
-            b=self.bits,
-            ts=self.timestamp,
-            ta=self.transaction
+        return (
+            """
+            IDENT:       {ident}
+            HEAD_HASH:   {head_hash}
+            PREV_HASH:   {prev_hash}
+            NONCE:       {nonce}
+            BITS:        {bits}
+            TIMESTAMP:   {timestamp}
+            {transaction}
+            """
+        ).format(
+            ident=self.ident,
+            head_hash=self.head_hash,
+            prev_hash=self.prev_hash,
+            nonce=self.nonce,
+            bits=self.bits,
+            transaction=str(self.transaction),
+            timestamp=self.timestamp
         )
 
     def __repr__(self):
