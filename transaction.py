@@ -1,6 +1,7 @@
 import json
 from chaintime import chaintime
 
+
 class Transaction(object):
     def __init__(self, sender=None, receiver=None, content=None, timestamp=None):
         self.sender = sender
@@ -22,4 +23,3 @@ class Transaction(object):
 if __name__ == "__main__":
     t = Transaction(sender="sender", receiver="receiver", content="blah-blah-blah")
     print(t)
-        

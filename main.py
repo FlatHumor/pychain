@@ -9,7 +9,8 @@ from chain import Chain
 if __name__ == '__main__':
     chain_path = os.path.join(os.path.split(os.path.abspath(__file__))[0], "chain")
     repo = FileRepository(chain_path)
-    transaction = Transaction("sender", "receiver", "Is a generic constructor that takes the string name of the desired algorithm as its first parameter.")
+    transaction = Transaction("sender", "receiver", "transaction content")
     chain = Chain()
     chain.link_repository(repo)
-    chain.add_transaction(transaction)
+    if chain.is_valid():
+        chain.add_transaction(transaction)
